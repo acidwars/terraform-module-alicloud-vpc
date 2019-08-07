@@ -32,9 +32,6 @@ variable "nat_gateway_name" {
 variable "subnet_cidrs" {
   description = "The subnets to create (vSwitch)"
   type        = map
-  default     = {
-    "10.42.1.0/24" = "${data.alicloud_zones.default.zones.0.id}"
-  }
 }
 
 variable "subnets" {
