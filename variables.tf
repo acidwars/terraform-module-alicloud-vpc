@@ -29,6 +29,14 @@ variable "nat_gateway_name" {
   type        = string
   default     = "default_nat_gw"
 }
+variable "subnet_cidrs" {
+  description = "The subnets to create (vSwitch)"
+  type        = list
+  default     = [
+    "10.42.0.1/24"
+  ]
+}
+
 variable "subnets" {
   description = "This will create vSwitch (subnets)"
   type        = map

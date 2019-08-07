@@ -1,5 +1,5 @@
 data "alicloud_zones" "default" {
-  network_type = "Vpc"
+  available_resource_creation = "VSwitch"
 }
 data "alicloud_instance_types" "default" {
   availability_zone = "${data.alicloud_zones.default.zones.0.id}"
