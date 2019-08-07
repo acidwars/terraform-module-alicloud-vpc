@@ -16,3 +16,10 @@ variable "vpc_gateway_name" {
   type = string
   default = "default_nat_gw"
 }
+variable "subnets" {
+  type = map
+  default = {
+    1 = "subnet-1"
+    2 = "subnet-2"
+  } 
+}
