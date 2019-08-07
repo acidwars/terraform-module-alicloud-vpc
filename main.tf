@@ -13,6 +13,7 @@ resource "alicloud_vswitch" "this" {
   vpc_id     = alicloud_vpc.this.id
   cidr_block = cidrsubnet(var.vpc_cidr_block, 10, each.key)
   name       = each.value
+  availibility_zone = data.alicloud_zones.default.${each.key - 1}.id
   depends_on = [
     "alicloud_vpc.this"
   ]
@@ -20,7 +21,7 @@ resource "alicloud_vswitch" "this" {
 
 resource "alicloud_nat_gateway" "this" {
   count  = var.enable_nat_gateway ? 1 : 0
-  vpc_id = alicloud.vpc.this
+  vpc_id = alicloud_vpc.this
   name   = var.nat_gateway_name
   depends_on = [
     "alicloud_vpc.this"
