@@ -9,7 +9,7 @@ resource "alicloud_vpc" "this" {
 }
 
 resource "alicloud_vswitch" "this" {
-  for_each          = toset(var.subnet_cidrs)
+  for_each          = var.subnet_cidrs
   vpc_id            = alicloud_vpc.this.id
   cidr_block        = each.key
   name              = each.key
