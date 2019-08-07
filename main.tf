@@ -11,9 +11,9 @@ resource "alicloud_vpc" "this" {
 resource "alicloud_vswitch" "this" {
   for_each          = var.subnet_cidrs
   vpc_id            = alicloud_vpc.this.id
-  cidr_block        = each.key
-  name              = each.key
-  availability_zone = data.alicloud_zones.default.zones.0.id
+  cidr_block        = each.value
+  name              = each.value
+  availability_zone = each.key
   depends_on = [
     "alicloud_vpc.this"
   ]
