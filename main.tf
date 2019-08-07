@@ -22,4 +22,7 @@ resource "alicloud_nat_gateway" "this" {
   count  = var.enable_nat_gateway ? 1 : 0
   vpc_id = alicloud.vpc.this
   name   = var.nat_gateway_name
+  depends_on = [
+    "alicloud_vpc.this"
+  ]
 }
