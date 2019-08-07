@@ -13,7 +13,7 @@ resource "alicloud_vswitch" "this" {
   vpc_id            = alicloud_vpc.this.id
   cidr_block        = each.value
   name              = each.value
-  availability_zone = each.key
+  availability_zone = length(var.availability_zones) > 0 ? element(var.availability_zones, count.index) : lookup(data.alicloud_zones.default.zones[each.index].id) 
   depends_on = [
     "alicloud_vpc.this"
   ]

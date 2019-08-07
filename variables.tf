@@ -7,7 +7,6 @@ variable "region" {
   description = "The region in which the VPC should be deployed"
   type        = string
 }
-
 variable "vpc_name" {
   description = "Name of the VPC"
   type        = string
@@ -23,7 +22,6 @@ variable "newbits" {
   type        = number
   default     = 10
 }
-
 variable "nat_gateway_name" {
   description = "The name of the NAT-Gateway"
   type        = string
@@ -31,9 +29,8 @@ variable "nat_gateway_name" {
 }
 variable "subnet_cidrs" {
   description = "The subnets to create (vSwitch)"
-  type        = map
+  type        = list
 }
-
 variable "subnets" {
   description = "This will create vSwitch (subnets)"
   type        = map
@@ -47,3 +44,9 @@ variable "enable_nat_gateway" {
   type        = bool
   default     = true
 }
+variable "availibility_zones" {
+  description = "List of availibility zones to use"
+  type = list
+  default = []
+}
+
