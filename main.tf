@@ -9,16 +9,17 @@ resource "alicloud_vpc" "this" {
 }
 
 resource "alicloud_vswitch" "this" {
-  for_each = var.subnets
-  vpc_id = alicloud_vpc.this.id
+  for_each   = var.subnets
+  vpc_id     = alicloud_vpc.this.id
   cidr_block = cidrsubnet(var.vpc_cidr_block, 10, each.key)
-  name = each.value
+  name       = each.value
   depends_on = [
     "alicloud_vpc.this"
   ]
 }
 
 resource "alicloud_nat_gateway" "this" {
+  count  = var.enable_nat_gateway ? 1 : 0
   vpc_id = alicloud.vpc.this
-  name = var.vpc_gateway_name
+  name   = var.nat_gateway_name
 }

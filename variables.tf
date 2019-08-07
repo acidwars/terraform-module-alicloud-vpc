@@ -3,23 +3,42 @@ locals {
     terraform = true
   }
 }
+variable "region" {
+  description = "The region in which the VPC should be deployed"
+  type        = string
+}
 
 variable "vpc_name" {
-  type    = string
-  default = "ali-tf-vpc"
+  description = "Name of the VPC"
+  type        = string
+  default     = "ali-tf-vpc"
 }
 variable "vpc_cidr_block" {
-  type    = string
-  default = "10.42.0.0/24"
+  description = "VPC CIDR Block, default 10.42.0.0/16"
+  type        = string
+  default     = "10.42.0.0/16"
 }
-variable "vpc_gateway_name" {
-  type = string
-  default = "default_nat_gw"
+variable "newbits" {
+  description = "Number of additional bits to extend vpc_cidr_block. Default 10"
+  type        = number
+  default     = 10
+}
+
+variable "nat_gateway_name" {
+  description = "The name of the NAT-Gateway"
+  type        = string
+  default     = "default_nat_gw"
 }
 variable "subnets" {
-  type = map
+  description = "This will create vSwitch (subnets)"
+  type        = map
   default = {
     1 = "subnet-1"
     2 = "subnet-2"
-  } 
+  }
+}
+variable "enable_nat_gateway" {
+  description = "Controls if a NAT-Gateway should be created"
+  type        = bool
+  default     = true
 }
